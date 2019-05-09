@@ -20,6 +20,7 @@
 #define SECCOMP_FILTER_FLAG_TSYNC	(1UL << 0)
 #define SECCOMP_FILTER_FLAG_LOG		(1UL << 1)
 #define SECCOMP_FILTER_FLAG_SPEC_ALLOW	(1UL << 2)
+#define SECCOMP_FILTER_FLAG_EXTENDED	(1UL << 3)
 
 /*
  * All BPF programs must return a 32-bit value.
