@@ -1303,7 +1303,7 @@ seccomp_func_proto(enum bpf_func_id func_id)
 	case BPF_FUNC_get_current_pid_tgid:
 		return &bpf_get_current_pid_tgid_proto;
 	default:
-		return NULL;
+		return tracing_func_proto(func_id);
 	}
 }
 
