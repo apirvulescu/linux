@@ -82,7 +82,9 @@ static int (*bpf_perf_event_read_value)(void *map, unsigned long long flags,
 static int (*bpf_perf_prog_read_value)(void *ctx, void *buf,
 				       unsigned int buf_size) =
 	(void *) BPF_FUNC_perf_prog_read_value;
-
+static int (*bpf_probe_read_str)(void *ctx, __u32 size,
+				 const void *unsafe_ptr) =
+	(void *) BPF_FUNC_probe_read_str;
 
 /* llvm builtin functions that eBPF C program may use to
  * emit BPF_LD_ABS and BPF_LD_IND instructions
