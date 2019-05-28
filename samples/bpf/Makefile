@@ -12,6 +12,7 @@ hostprogs-y += tracex3
 hostprogs-y += tracex4
 hostprogs-y += tracex5
 hostprogs-y += tracex6
+hostprogs-y += tracex7
 hostprogs-y += test_probe_write_user
 hostprogs-y += trace_output
 hostprogs-y += lathist
@@ -43,6 +44,7 @@ hostprogs-y += xdp_monitor
 hostprogs-y += syscall_tp
 hostprogs-y += test_seccomp
 hostprogs-y += test_seccomp2
+hostprogs-y += test_seccomp3
 
 # Libbpf dependencies
 LIBBPF := ../../tools/lib/bpf/bpf.o
@@ -60,6 +62,7 @@ tracex3-objs := bpf_load.o $(LIBBPF) tracex3_user.o
 tracex4-objs := bpf_load.o $(LIBBPF) tracex4_user.o
 tracex5-objs := bpf_load.o $(LIBBPF) tracex5_user.o
 tracex6-objs := bpf_load.o $(LIBBPF) tracex6_user.o
+tracex7-objs := bpf_load.o $(LIBBPF) tracex7_user.o
 load_sock_ops-objs := bpf_load.o $(LIBBPF) load_sock_ops.o
 test_probe_write_user-objs := bpf_load.o $(LIBBPF) test_probe_write_user_user.o
 trace_output-objs := bpf_load.o $(LIBBPF) trace_output_user.o
@@ -93,6 +96,7 @@ xdp_monitor-objs := bpf_load.o $(LIBBPF) xdp_monitor_user.o
 syscall_tp-objs := bpf_load.o $(LIBBPF) syscall_tp_user.o
 test_seccomp-objs := bpf_load.o $(LIBBPF) test_seccomp_user.o
 test_seccomp2-objs := bpf_load.o $(LIBBPF) test_seccomp2_user.o
+test_seccomp3-objs := bpf_load.o $(LIBBPF) test_seccomp3_user.o
 
 # Tell kbuild to always build the programs
 always := $(hostprogs-y)
@@ -105,6 +109,7 @@ always += tracex3_kern.o
 always += tracex4_kern.o
 always += tracex5_kern.o
 always += tracex6_kern.o
+always += tracex7_kern.o
 always += sock_flags_kern.o
 always += test_probe_write_user_kern.o
 always += trace_output_kern.o
@@ -143,6 +148,7 @@ always += xdp_monitor_kern.o
 always += syscall_tp_kern.o
 always += test_seccomp_kern.o
 always += test_seccomp2_kern.o
+always += test_seccomp3_kern.o
 
 HOSTCFLAGS += -I$(objtree)/usr/include
 HOSTCFLAGS += -I$(srctree)/tools/lib/
@@ -161,6 +167,7 @@ HOSTLOADLIBES_tracex3 += -lelf
 HOSTLOADLIBES_tracex4 += -lelf -lrt
 HOSTLOADLIBES_tracex5 += -lelf
 HOSTLOADLIBES_tracex6 += -lelf
+HOSTLOADLIBES_tracex7 += -lelf
 HOSTLOADLIBES_test_cgrp2_sock2 += -lelf
 HOSTLOADLIBES_load_sock_ops += -lelf
 HOSTLOADLIBES_test_probe_write_user += -lelf
@@ -187,6 +194,7 @@ HOSTLOADLIBES_xdp_monitor += -lelf
 HOSTLOADLIBES_syscall_tp += -lelf
 HOSTLOADLIBES_test_seccomp += -lelf
 HOSTLOADLIBES_test_seccomp2 += -lelf
+HOSTLOADLIBES_test_seccomp3 += -lelf
 
 # Allows pointing LLC/CLANG to a LLVM backend with bpf support, redefine on cmdline:
 #  make samples/bpf/ LLC=~/git/llvm/build/bin/llc CLANG=~/git/llvm/build/bin/clang

@@ -41,15 +41,26 @@ int main(int argc, char **argv)
                 return 1;
         }
 
-	char buffer[100];
+	char key_open[MAX_LEN];
+        int value_open;
 
-        syscall(__NR_read, 101, buffer, 100);
-	assert(errno == EBADF);
+        value_open = O_RDWR;
+        memset(key_open, 0, MAX_LEN);
+        strcpy(key_open, "/dev/null");
+        bpf_map_update_elem(map_fd[0], key_open, &value_open, BPF_ANY);
 
-        syscall(__NR_read, 100, buffer, 100);
-	assert(errno == EPERM);
+        value_open = O_RDONLY;
+        memset(key_open, 0, MAX_LEN);
+        strcpy(key_open, "/dev/urandom");
+        bpf_map_update_elem(map_fd[0], key_open, &value_open, BPF_ANY);
 
-	printf("read syscall successfully filtered\n");
+        syscall(__NR_open, "/dev/null", O_RDONLY);
+        assert(errno == 0);
+
+        syscall(__NR_open, "/dev/urandom", O_WRONLY);
+        assert(errno == EPERM);
+
+	printf("open syscall successfully filtered\n");
 
         return 0;
 }
