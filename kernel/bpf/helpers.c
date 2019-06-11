@@ -179,3 +179,16 @@ const struct bpf_func_proto bpf_get_current_comm_proto = {
 	.arg1_type	= ARG_PTR_TO_UNINIT_MEM,
 	.arg2_type	= ARG_CONST_SIZE,
 };
+
+BPF_CALL_2(bpf_match_paths, char *, user_path, char *, kern_path)
+{
+	return 555;
+}
+
+const struct bpf_func_proto bpf_match_paths_proto = {
+	.func		= bpf_match_paths,
+	.gpl_only	= false,
+	.ret_type	= RET_INTEGER,
+	.arg1_type	= ARG_PTR_TO_UNINIT_MEM,
+	.arg2_type	= ARG_PTR_TO_UNINIT_MEM,
+};

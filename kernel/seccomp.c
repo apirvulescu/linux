@@ -1302,6 +1302,8 @@ seccomp_func_proto(enum bpf_func_id func_id)
 		return &bpf_get_prandom_u32_proto;
 	case BPF_FUNC_get_current_pid_tgid:
 		return &bpf_get_current_pid_tgid_proto;
+	case BPF_FUNC_match_paths:
+		return &bpf_match_paths_proto;
 	default:
 		return tracing_func_proto(func_id);
 	}

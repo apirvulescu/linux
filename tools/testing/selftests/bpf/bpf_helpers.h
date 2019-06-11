@@ -61,6 +61,8 @@ static int (*bpf_skb_set_tunnel_opt)(void *ctx, void *md, int size) =
 	(void *) BPF_FUNC_skb_set_tunnel_opt;
 static unsigned long long (*bpf_get_prandom_u32)(void) =
 	(void *) BPF_FUNC_get_prandom_u32;
+static int (*bpf_match_paths)(char *user_path, char *kern_path) =
+	(void *) BPF_FUNC_match_paths;
 static int (*bpf_xdp_adjust_head)(void *ctx, int offset) =
 	(void *) BPF_FUNC_xdp_adjust_head;
 static int (*bpf_xdp_adjust_meta)(void *ctx, int offset) =
