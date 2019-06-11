@@ -189,6 +189,6 @@ const struct bpf_func_proto bpf_match_paths_proto = {
 	.func		= bpf_match_paths,
 	.gpl_only	= false,
 	.ret_type	= RET_INTEGER,
-	.arg1_type	= ARG_PTR_TO_UNINIT_MEM,
-	.arg2_type	= ARG_PTR_TO_UNINIT_MEM,
+	.arg1_type	= ARG_PTR_TO_MEM_OR_NULL,
+	.arg2_type	= ARG_PTR_TO_MEM_OR_NULL,
 };
